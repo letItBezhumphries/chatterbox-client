@@ -7,13 +7,14 @@ var Parse = {
     $.ajax({
       url: Parse.server,
       type: 'POST',
-      data: JSON.stringify({ order: '-createdAt', message: message}),
+      data: JSON.stringify({order: '-createdAt', message: message}),
       contentType: 'application/json',
       success: successCB,
       error: errorCB || function(error) {
         console.error('chatterbox: Failed to fetch messages', error);
       }
     });
+    console.log(message);
   },
 
   readAll: function(successCB, errorCB = null) {
@@ -27,6 +28,7 @@ var Parse = {
         console.error('chatterbox: Failed to fetch messages', error);
       }
     });
+    // console.log(data)
   }
 
 };
