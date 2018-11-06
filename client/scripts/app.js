@@ -18,15 +18,18 @@ var App = {
   },
 
   fetch: function(callback = ()=>{}) {
-    Parse.readAll((data) => {
-      // examine the response from the server request:
+    // examine the response from the server request:
+    var findMessages = function (data) {
+      $('#chats').empty();
       console.log(data);
 
-      callback();
-    });
-  },
+    }
 
+    callback();
+    Parse.readAll(findMessages);
+  },
   startSpinner: function() {
+
     App.$spinner.show();
     FormView.setStatus(true);
   },
