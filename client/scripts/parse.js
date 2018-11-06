@@ -9,14 +9,14 @@ var Parse = {
       type: 'POST',
       data: JSON.stringify(message),
       contentType: 'application/json',
-      success: function(data) {
-        console.log(data)
+      success: function(message) {
+        console.log('chatterbox: Success to Post a message', message);
         if (successCB) {
-          successCB(data);
+          successCB(message);
         }
       },
       error: errorCB || function(error) {
-        console.error('chatterbox: Failed to post messages', error);
+        console.error('chatterbox: Failed to fetch messages', error);
       }
     });
     console.log(message);
@@ -29,8 +29,7 @@ var Parse = {
       data: { order: '-createdAt' },
       contentType: 'application/json',
       success: function(data) {
-        console.log(data)
-        console.log('Chatterbox: successful get request', data);
+        console.log('chatterbox: Success to fetch messages');
         if (successCB) {
           successCB(data);
         }
