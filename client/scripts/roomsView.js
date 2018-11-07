@@ -19,16 +19,17 @@ var RoomsView = {
     console.log(message.roomname);
     console.log(message.roomname === undefined);
     console.log(App.rooms);
-    if (message.roomname !== null || message.roomname !== undefined) {
+    if ((message.roomname !== null && message.roomname !== undefined) && (!App.rooms[message.roomname])) {
       App.rooms[message.roomname] = message.roomname;
+      this.$select.append(`<option> ${message.roomname} </option>`);
     } 
     // we need to check to see if App.rooms contains the roomname key if it does then we want to append it to the DOM.
-    for (let room in App.rooms) {
-      // App.rooms[room] === message.roomname;
-      if (room === message.roomname) {
-        this.$select.append(`<option> ${message.roomname} </option>`);
-      }
-    }
+    // for (let room in App.rooms) {
+    //   // App.rooms[room] === message.roomname;
+    //   if (room === message.roomname) {
+        
+    //   }
+    // }
   }
 // new method here for renderRoom
 };
