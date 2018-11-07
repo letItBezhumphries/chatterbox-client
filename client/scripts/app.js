@@ -24,17 +24,6 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     // examine the response from the server request:
-<<<<<<< HEAD
-    var findMessages = function (data) {
-      $('#chats').empty();
-      console.log(data);
-
-    }
-
-    callback();
-    Parse.readAll(findMessages);
-  },
-=======
     // console.log(data);
     // refresh for new chat messages
     var findMessages = function(data) {
@@ -55,7 +44,6 @@ var App = {
 
   //escaping method
 
->>>>>>> 4b4178557c48cd8e33637464fbd479dac4d495a4
   startSpinner: function() {
 
     App.$spinner.show();
