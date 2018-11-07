@@ -12,24 +12,15 @@ var RoomsView = {
   addRoom: function() {
 
     // add prompt to add a roomname for POST request
+    // We get the new roomname from the user after the prompt runs.
   },
-  // We get the new roomname from the user after the prompt runs. 
-  // We 
-  renderRoom: function(message) {
-    console.log(message.roomname);
-    console.log(message.roomname === undefined);
-    console.log(App.rooms);
-    if ((message.roomname !== null && message.roomname !== undefined) && (!App.rooms[message.roomname])) {
-      App.rooms[message.roomname] = message.roomname;
-      this.$select.append(`<option> ${message.roomname} </option>`);
+   
+
+  renderRoom: function(roomname) {
+    if (roomname && !App.rooms[roomname]) {
+      App.rooms[roomname] = roomname;
+      this.$select.append(`<option> ${roomname} </option>`);
     } 
-    // we need to check to see if App.rooms contains the roomname key if it does then we want to append it to the DOM.
-    // for (let room in App.rooms) {
-    //   // App.rooms[room] === message.roomname;
-    //   if (room === message.roomname) {
-        
-    //   }
-    // }
   }
-// new method here for renderRoom
+  
 };

@@ -36,7 +36,7 @@ var App = {
         var message = messageArr[i];
         // call MessagesView on the data.
         MessagesView.renderMessage(message);
-        RoomsView.renderRoom(message);
+        RoomsView.renderRoom(message.roomname);
       }
       callback();
     };
