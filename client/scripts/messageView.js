@@ -7,22 +7,3 @@ var MessageView = {
       </div>
     `)
 };
-
-
-//
-//
-/*
-render: function(message) { 
-  
-  var renderedMessage = _.template(`
-     <div class="chat">
-       <div class="username">
-       ${ message.username }
-       </div>
-       <div> ${message.text} </div>
-     </div>
-  `);
-  
-  return renderedMessage;
-}
-*/

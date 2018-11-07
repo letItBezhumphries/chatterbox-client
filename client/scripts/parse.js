@@ -19,7 +19,6 @@ var Parse = {
         console.error('chatterbox: Failed to fetch messages', error);
       }
     });
-    console.log(message);
   },
   
   readAll: function(successCB, errorCB = null) {
