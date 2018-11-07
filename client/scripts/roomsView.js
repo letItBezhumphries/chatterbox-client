@@ -7,6 +7,11 @@ var RoomsView = {
     this.$button.on('click', addRoom);
   },
 
+  render: function() { 
+    //create a variable to store the value of $select
+    var targetRoom = this.$select.val()
+  },
+
   addRoom: function() {
     var room = prompt('what room would you like to add?');
     this.renderRoom(room);
