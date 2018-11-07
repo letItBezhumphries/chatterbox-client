@@ -6,7 +6,7 @@ var App = {
   // messages: [], //
   friends: {}, //
   // maybe rooms object here {};
-
+  rooms: { main: 'main' },
 
   initialize: function() {
     App.username = window.location.search.substr(10);
@@ -36,6 +36,7 @@ var App = {
         var message = messageArr[i];
         // call MessagesView on the data.
         MessagesView.renderMessage(message);
+        RoomsView.renderRoom(message);
       }
       callback();
     };
@@ -48,7 +49,7 @@ var App = {
 
     App.$spinner.show();
     FormView.setStatus(true);
-  },
+  },  
 
   stopSpinner: function() {
     App.$spinner.fadeOut('fast');

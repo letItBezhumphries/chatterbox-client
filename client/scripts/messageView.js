@@ -6,6 +6,7 @@ var MessageView = {
         <div class="message"> <%= text %> </div>
       </div>
     `)
+<<<<<<< HEAD
 };
 
 
@@ -26,3 +27,6 @@ render: function(message) {
   return renderedMessage;
 }
 */
+=======
+};
+>>>>>>> e6716170857310bc841450a1ae3b1808ac747018
