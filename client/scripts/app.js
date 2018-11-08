@@ -40,6 +40,16 @@ var App = {
         message.text = App.escape(message.text);
         message.username = App.escape(message.username);
 
+        //need to change class for message that has username if that username is in friendsList
+        /*
+        if (Friends.friendList.includes(message.username)) {
+          message.friendStatus = 'friend'
+        } else {
+          message.friendStatus = 'not friend
+        }
+        */
+        Friends.friendList.push(message.username);
+
         MessagesView.renderMessage(message);
 
 
