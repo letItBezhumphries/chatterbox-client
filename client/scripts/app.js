@@ -51,6 +51,12 @@ var App = {
           message.friendStatus = 'notfriend'
         }
 
+        // if (message.friendStatus === 'notfriend') {
+        //   $('a.username').on('click', function() {
+        //     message.friendStatus = 'friend'
+        //   });
+        // }
+
         if (message.friendStatus === 'friend') {
           $('a.username').on('mouseenter',function(){
             $(this).css('color', 'green')
