@@ -4,19 +4,14 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    this.$button.on('click', addRoom);
+    this.$button.on('click', Rooms.add);
+    this.$select.on('change', RoomsView.render);
   },
 
-  render: function() { 
-    //create a variable to store the value of $select
-    var targetRoom = this.$select.val()
-  },
-
-  addRoom: function() {
-    var room = prompt('what room would you like to add?');
-    this.renderRoom(room);
-    // add prompt to add a roomname for POST request
-    // We get the new roomname from the user after the prompt runs.
+  render: function() {
+    //when we run the render function we want to get the value from the $select dropdown
+    App.room = RoomsView.$select.val();
+    App.fetch();
   },
 
   renderRoom: function(roomname) {
@@ -28,6 +23,6 @@ var RoomsView = {
       //   <option> <%= roomname %> </option>`);
 
       // this.$select.append(room(roomname));
-    } 
+    }
   }
 };

@@ -38,6 +38,24 @@ var Parse = {
       }
     });
     // console.log(data)
+  },
+
+  getRoom: function(roomname, successCB, errorCB = null) {
+    $.ajax({
+      url: Parse.server,
+      type: 'GET',
+      data: { order: '-createdAt', where: `{"roomname":"${roomname}"}` },
+      contentType: 'application/json',
+      success: function(data) {
+        console.log('chatterbox: Success you found the rooms!');
+        if (successCB) {
+          successCB(data);
+        }
+      },
+      error: errorCB || function(error) {
+        console.error('chatterbox: Failed to fetch messages', error);
+      }
+    });
   }
 
 };
