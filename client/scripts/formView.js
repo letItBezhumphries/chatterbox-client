@@ -1,7 +1,6 @@
 var FormView = {
 
   $form: $('form'),
-  // $message: $('#message'),
 
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
@@ -10,21 +9,20 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-    //create a variable to store a message
+    //create a variable to store a message to pass into invocation of Parse.create()
     var message = {
-      username: App.escape(App.username),
-      text: App.escape($('#message').val()),
-      roomname: App.escape($('#rooms select').val())
+      username: App.username,
+      text: $('#message').val(),
+      roomname: $('#rooms select').val()
     };
-    // send a post request to the server with the message object
+    //send Post request to save to server
     Parse.create(message);
-    // fetch the data from the server to post on the page.
+
+    //fetch down from server updated messages
     App.fetch();
 
     //need to clear the input field after posting to the server
-    // App.$message.val('');
     $('form #message').val('');
-
     console.log('click!');
   },
 

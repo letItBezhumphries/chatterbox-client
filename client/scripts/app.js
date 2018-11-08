@@ -4,10 +4,12 @@ var App = {
 
   username: 'anonymous',
   // messages: [], //
-  friends: {}, //
-  // maybe rooms object here {};
+  //friends: {}, //
+
   rooms: { main: 'main' },
   // room property to show our current room (main room with all the messages displayed)
+  room: 'main',
+
   room: 'main',
 
   initialize: function() {
@@ -20,13 +22,14 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    setInterval(()=>{
+      App.fetch();}, 12000);
     //can use setInterval and polling to re-render updates
     //setInterval(this.fetch.bind(this), 5000);
   },
 
   fetch: function(callback = ()=>{}) {
     // examine the response from the server request:
-    // console.log(data);
     // refresh for new chat messages
     var findMessages = function(data) {
       $('#chats').empty();
@@ -43,15 +46,23 @@ var App = {
         //need to change class for message that has username if that username is in friendsList
 
         if (Friends.friendList.includes(message.username)) {
-          message.friendStatus = 'friend'
+          message.friendStatus = 'friend';
         } else {
           message.friendStatus = 'notfriend'
         }
 
+        if (message.friendStatus === 'friend') {
+          $('a.username').on('mouseenter',function(){
+            $(this).css('color', 'green')
+          });
+          $('a.username').on('mouseleave', function(){
+            $(this).css({"color": 'black'})
+          });
+        }
         MessagesView.renderMessage(message);
-
-
         RoomsView.renderRoom(message.roomname);
+        Friends.toggleStatus(message.username);
+
       }
       callback();
     };
