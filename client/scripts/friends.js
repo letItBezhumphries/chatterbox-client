@@ -2,10 +2,20 @@ var Friends = {
 
   friendList: [],
 
-  toggleStatus: function(friend) {
-    if () {
-
+  toggleStatus: function() {
+    // if (this.friendList.contains(message.username)) {
+    // check if message hasClass of friend
+    if ($(this).hasClass('friend')) {
+      Friends.friendList.splice(Friends.friendList.indexOf($(this).text()),1)
+    } else {
+      Friends.friendList.push($(this).text);
     }
+
+    App.fetch();
+    // using the splice method return the message of the friend
+    // otherwise push the message into friendList
+    // invoke App.fetch
+
   }
 
 };
