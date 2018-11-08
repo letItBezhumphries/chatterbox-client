@@ -4,9 +4,11 @@ var App = {
   
   username: 'anonymous',
   // messages: [], //
-  friends: {}, //
-  // maybe rooms object here {};
+  //friends: {}, //
+  
   rooms: { main: 'main' },
+
+  room: 'main',
 
   initialize: function() {
     App.username = window.location.search.substr(10);
@@ -24,7 +26,6 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     // examine the response from the server request:
-    // console.log(data);
     // refresh for new chat messages
     var findMessages = function(data) {
       $('#chats').empty();
@@ -37,13 +38,17 @@ var App = {
         // call MessagesView on the data.
         MessagesView.renderMessage(message);
         RoomsView.renderRoom(message.roomname);
+        Friends.toggleStatus(message.username);
+        
       }
       callback();
     };
-    Parse.readAll(findMessages);
+    if (App.room === 'main') {
+      Parse.readAll(findMessages);
+    } else {
+      Parse.getRoom(App.room, findMessages)
+    }
   },
-
-  //escaping method
 
   startSpinner: function() {
     App.$spinner.show();
