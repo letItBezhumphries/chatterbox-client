@@ -32,15 +32,9 @@ var RoomsView = {
     if (roomname && !App.rooms[roomname]) {
       App.rooms[roomname] = roomname;
       this.$select.append(`<option> ${roomname} </option>`);
+      //   var room = _.template(`
+      //   <option> <%- roomname %> </option>`);
+      // this.$select.append(room(roomname));
     }
   }
 };
-
-
-
-
-
-
-
-
-
