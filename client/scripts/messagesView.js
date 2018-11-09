@@ -2,35 +2,28 @@ var MessagesView = {
 
   $chats: $('#chats'),
 
-  initialize: function() {
-    $('a').on('click', MessagesView.handleUsernameClick);
-    $('a.username').on('mouseover', function() {
 
-    });
+  initialize: function() {    
+    MessagesView.$chats.on('click', '.username', Friends.toggleStatus);
   },
 
   renderMessage: function(message) {
-    // var $username = $(.username)
     if (message.text && message.username) {
       this.$chats.append(MessageView.render(message));
-      Friends.friendList.push(message.username);
       // set the event handler to off and then on Click invoke the toggleStatus method
-      // var $username = $('.username');
-      // $username.off();
-      // $username.on('click', Friends.toggleStatus);
     }
   },
 
-  handleUsernameClick: function(event) {
-    //store the 'clicked' element's innerText
-    var username = event.target.innerText;
-
-    if (!Friends.friendList.includes(username)) {
-      Friends.friendList.push(username);
-      $(this).parent('div').addClass('.friend');
-      //grab the parentElement and add the class friends-message to that message
-    }
-    Friends.toggleStatus(username);
-  }
-
+  // handleUsernameClick: function(event) {
+  //   //store the 'clicked' element's innerText
+  //   var username = event.target.innerText;
+  //   console.log('I have been clicked!!!', username);
+  //   if (!Friends.friendList[username]) {
+  //     Friends.friendList[username] = true;
+  //     $(this).addClass('friend').css({ 'text-decoration': 'none', 'color': 'green' });
+  //     //grab the parentElement and add the class friends-message to that message
+  //   } else {
+  //     username.toggleClass('friend').text.css('color', 'black');
+  //   } 
+  // }
 };

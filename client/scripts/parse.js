@@ -37,7 +37,6 @@ var Parse = {
         console.error('chatterbox: Failed to fetch messages', error);
       }
     });
-    // console.log(data)
   },
 
   getRoom: function(roomname, successCB, errorCB = null) {

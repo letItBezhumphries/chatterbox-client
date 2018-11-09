@@ -1,23 +1,42 @@
 var Friends = {
 
-  friendList: [],
+  friendList: {},
 
-  toggleStatus: function(username) {
+  toggleStatus: function(event) {
     // if (this.friendList.contains(message.username)) {
-    // check if message hasClass of friend
-    if ($(this).hasClass('friend')) {
-      Friends.friendList.splice(Friends.friendList.indexOf($(this).text()), 1);
+    //store the 'clicked' element's innerText
+    var username = event.target.innerText;
+    console.log('I have been clicked!!!', username);
+    if (!Friends.friendList[username]) {
+      Friends.friendList[username] = true;
+      $(this).addClass('friend').css({ 'text-decoration': 'none', 'color': 'green' });
     } else {
-      Friends.friendList.push($(this).text());
-    }
+      $(this).toggleClass('friend').css('color', 'black');
+    } 
 
+    // check if message hasClass of friend
+    // if ($(this).hasClass('friend')) {
+    //   // Friends.friendList.splice(Friends.friendList.indexOf($(this).text()), 1);
+    // } 
     // App.fetch();
     // using the splice method return the message of the friend
     // otherwise push the message into friendList
     // invoke App.fetch
 
-  }
+  },
 
+
+  // handleUsernameClick: function(event) {
+  //   //store the 'clicked' element's innerText
+  //   var username = event.target.innerText;
+  //   console.log('I have been clicked!!!', username);
+  //   if (!Friends.friendList[username]) {
+  //     Friends.friendList[username] = true;
+  //     $(this).addClass('friend').css({ 'text-decoration': 'none', 'color': 'green' });
+  //   } else {
+  //     username.toggleClass('friend').text.css('color', 'black');
+  //   } 
+  // }
 };
 
 //distinguish messages sent by friends
