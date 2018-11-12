@@ -1,37 +1,28 @@
 
 var Friends = {
 
-  friendList: [],
+  friendList: {},
 
-  toggleStatus: function(username) {
-    // if (this.friendList.contains(message.username)) {
-    // check if message hasClass of friend
-    if ($(this).hasClass('friend')) {
-      Friends.friendList.splice(Friends.friendList.indexOf($(this).text()), 1);
-    } else {
-      Friends.friendList.push($(this).text());
+  toggleStatus: function(event) {
+    //store the 'clicked' element's innerText
+    var username = $(event.target).data('username');
+    console.log('I have been clicked!!!', username);
+
+    if (username !== undefined) {
+      Friends.friendList[username] = !Friends.friendList[username];
+    
+      var selector = '[data-username="' + username + '"]';
+      var $usernames = $(selector).toggleClass('friend');
     }
 
-    // App.fetch();
-    // using the splice method return the message of the friend
-    // otherwise push the message into friendList
-    // invoke App.fetch
-
+    if (!Friends.friendList[username]) {
+      Friends.friendList[username] = true;
+      $(this).toggleClass('friend');
+    } else {
+      delete Friends.friendList[username];
+      $(this).toggleClass('friend');
+    }
+    console.log(Friends.friendList);
   }
-
 };
-
-//need to allow a user to be able to click on a username and add that username to their friendsList
-
-//need to allow user to keep track of any message sent by any particular friend or friends
-
-//need an eventListener that listens for clicks on a username
-
-//need a function that handles that event/ what happens when username is clicked?
-
-//
-
-
-//add css class to any message that was sent from a username
-  //toggle this class for all that friend' messages across all rooms 
 

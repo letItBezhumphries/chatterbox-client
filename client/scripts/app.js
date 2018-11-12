@@ -19,13 +19,15 @@ var App = {
     RoomsView.initialize();
     MessagesView.initialize();
 
+    $('#chats').on('click', '.username', Friends.toggleStatus);
+
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
     setInterval(()=>{
-      App.fetch();}, 12000);
+      App.fetch();
+    }, 12000);
     //can use setInterval and polling to re-render updates
-    //setInterval(this.fetch.bind(this), 5000);
   },
 
   fetch: function(callback = ()=>{}) {
@@ -40,34 +42,28 @@ var App = {
         // assign message to data.results[i]?
         var message = messageArr[i];
         // call MessagesView on the data.
-        message.text = App.escape(message.text);
-        message.username = App.escape(message.username);
+
 
         //need to change class for message that has username if that username is in friendsList
 
-        if (Friends.friendList.includes(message.username)) {
+        if (Friends.friendList[message.username]) {
           message.friendStatus = 'friend';
         } else {
-          message.friendStatus = 'notfriend'
+          message.friendStatus = 'notfriend';
         }
 
-        // if (message.friendStatus === 'notfriend') {
-        //   $('a.username').on('click', function() {
-        //     message.friendStatus = 'friend'
-        //   });
-        // }
-
         if (message.friendStatus === 'friend') {
-          $('a.username').on('mouseenter',function(){
-            $(this).css('color', 'green')
+          $('a.username').on('mouseenter', function() {
+            $(this).css('color', 'green');
           });
-          $('a.username').on('mouseleave', function(){
-            $(this).css({"color": 'black'})
+          $('a.username').on('mouseleave', function() {
+            $(this).css({'color': 'black'});
           });
         }
         MessagesView.renderMessage(message);
         RoomsView.renderRoom(message.roomname);
-        Friends.toggleStatus(message.username);
+        
+        // Friends.toggleStatus(message.username);
 
       }
       callback();
@@ -75,22 +71,8 @@ var App = {
     if (App.room === 'main') {
       Parse.readAll(findMessages);
     } else {
-      Parse.getRoom(App.room, findMessages)
+      Parse.getRoom(App.room, findMessages);
     }
-  },
-
-  //escaping method
-  escape: function(string) {
-    var output = string;
-    if (output) {
-      output = output.replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/"/g, '&#x27;')
-        .replace(/\//g, '&#x2F;')
-    }
-    return output;
   },
 
   startSpinner: function() {
